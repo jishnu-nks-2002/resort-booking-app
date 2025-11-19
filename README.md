@@ -448,18 +448,33 @@ Password: admin123
 
 ### Hero Section
 Modern landing page with stunning resort imagery and clear call-to-action.
+<img width="1915" height="933" alt="image" src="https://github.com/user-attachments/assets/f8e31014-71fc-4d5f-ae35-fe4d8f5ed618" />
+
 
 ### Services Section
 Three-column layout showcasing Accommodation, Adventure Activities, and Wellness & Spa services.
+<img width="1741" height="975" alt="image" src="https://github.com/user-attachments/assets/a9341514-9525-4acc-910c-46496157095c" />
+
 
 ### Gallery
 Grid layout displaying resort images with responsive design.
+<img width="1030" height="701" alt="image" src="https://github.com/user-attachments/assets/4bf4c1cf-fe3f-48ca-83ec-84db0432d543" />
 
-### Booking Form
+
+### Booking packages
 User-friendly form with validation and real-time feedback.
+<img width="1919" height="931" alt="image" src="https://github.com/user-attachments/assets/f8a9d910-30fc-4c01-84e9-2e35d480faf2" />
+
 
 ### Admin Dashboard
 Comprehensive dashboard for managing bookings, packages, and users.
+<img width="1901" height="875" alt="image" src="https://github.com/user-attachments/assets/b9e92255-4998-43b4-99ab-89af58a1cb2d" /><img width="1916" height="936" alt="image" src="https://github.com/user-attachments/assets/78eb31ce-6c33-4e62-87ad-b0f6a5323ed9" />
+<img width="1910" height="943" alt="image" src="https://github.com/user-attachments/assets/3bf6d5ce-9482-41ad-86c8-3e24c84640ab" />
+<img width="1604" height="720" alt="image" src="https://github.com/user-attachments/assets/db67891f-1fe0-4f80-b9e7-5a8288de183e" />
+
+<img width="1910" height="909" alt="image" src="https://github.com/user-attachments/assets/eaa3b297-4ab7-4878-91b5-0aa48511ab67" />
+<img width="1882" height="936" alt="image" src="https://github.com/user-attachments/assets/52eb195f-ecb9-4ed7-bd9f-822f162739a9" />
+
 
 ## 🚀 Deployment
 
