@@ -12,8 +12,7 @@ A full-stack resort booking platform built with React/Vite frontend and Node.js 
 - [API Documentation](#api-documentation)
 - [Usage](#usage)
 - [Screenshots](#screenshots)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
+
 
 ## ✨ Features
 
@@ -476,51 +475,6 @@ Comprehensive dashboard for managing bookings, packages, and users.
 <img width="1882" height="936" alt="image" src="https://github.com/user-attachments/assets/52eb195f-ecb9-4ed7-bd9f-822f162739a9" />
 
 
-## 🚀 Deployment
-
-### Frontend Deployment (Vercel/Netlify)
-
-**Vercel:**
-```bash
-npm install -g vercel
-cd frontend
-vercel
-```
-
-**Netlify:**
-```bash
-npm install -g netlify-cli
-cd frontend
-npm run build
-netlify deploy --prod
-```
-
-### Backend Deployment (Render/Heroku/Railway)
-
-**Render:**
-1. Connect GitHub repository
-2. Set environment variables
-3. Deploy from dashboard
-
-**Heroku:**
-```bash
-heroku create your-app-name
-git push heroku main
-heroku config:set JWT_SECRET=your_secret
-```
-
-**Docker:**
-```dockerfile
-# Dockerfile for backend
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-EXPOSE 5000
-CMD ["npm", "start"]
-```
 
 ## 🔐 Security Features
 
