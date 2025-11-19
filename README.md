@@ -528,24 +528,7 @@ CMD ["npm", "start"]
 - Password hashing with bcrypt
 - Input validation and sanitization
 - CORS configuration
-- Rate limiting
-- XSS protection
-- SQL injection prevention
 - Secure file upload handling
-
-## 🧪 Testing
-
-```bash
-# Run frontend tests
-cd frontend
-npm test
-
-# Run backend tests
-cd backend
-npm test
-```
-
-## 📝 Database Schema
 
 ### Users Table
 ```sql
@@ -592,23 +575,11 @@ CREATE TABLE packages (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-```
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - https://github.com/jishnu-nks-2002
+- https://github.com/jishnu-nks-2002
 
 ## 🙏 Acknowledgments
 
@@ -616,10 +587,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Thanks to all contributors
 - Inspired by modern resort booking platforms
 
-## 📞 Support
-
-For support, email support@resortbooking.com or open an issue in the repository.
-
----
 
 **Made with by [jishnu]**
