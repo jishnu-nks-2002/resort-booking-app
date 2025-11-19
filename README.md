@@ -24,23 +24,23 @@ A full-stack resort booking platform built with React/Vite frontend and Node.js 
 - **User Authentication**: Secure login and registration
 - **User Dashboard**: View and manage bookings
 - **Admin Panel**: Comprehensive booking and package management
-- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Responsive Design**: Mobile-first approach with Tailwind CSS and Gsap for animation
 
 ### Backend Features
-- **RESTful API**: Built with Node.js and Express/TypeScript
+- **RESTful API**: Built with Node.js and Express/JavaScript
 - **Authentication & Authorization**: JWT-based secure authentication
 - **Role-Based Access Control**: User and Admin roles
 - **Booking Management**: Full CRUD operations for bookings
 - **Package Management**: Create and manage resort packages with image uploads
 - **User Management**: Admin user management capabilities
-- **Database**: PostgreSQL/MongoDB with proper schema design
+- **Database**: MongoDB with proper schema design
 - **Validation & Sanitization**: Input validation and security best practices
 
 ## 🛠️ Tech Stack
 
 ### Frontend
 - **Framework**: React 18+ / Vite
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS, CSS and Gsap
 - **HTTP Client**: Axios
 - **State Management**: React Hooks
 - **Routing**: React Router DOM
@@ -49,47 +49,12 @@ A full-stack resort booking platform built with React/Vite frontend and Node.js 
 ### Backend
 - **Runtime**: Node.js
 - **Framework**: Express.js
-- **Language**: TypeScript
-- **Database**: PostgreSQL / MongoDB
+- **Language**: JavaScript
+- **Database**: MongoDB
 - **Authentication**: JWT (jsonwebtoken)
 - **File Upload**: Multer
-- **Validation**: Express Validator / Joi
+- **Validation**: Express Validator
 
-## 📁 Project Structure
-
-```
-resort-booking-app/
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Hero.jsx
-│   │   │   ├── Services.jsx
-│   │   │   ├── Gallery.jsx
-│   │   │   └── Footer.jsx
-│   │   ├── pages/
-│   │   │   ├── Home.jsx
-│   │   │   ├── Login.jsx
-│   │   │   ├── Register.jsx
-│   │   │   ├── Bookings.jsx
-│   │   │   └── Admin/
-│   │   ├── services/
-│   │   │   └── api.js
-│   │   └── App.jsx
-│   ├── package.json
-│   └── vite.config.js
-│
-└── backend/
-    ├── src/
-    │   ├── controllers/
-    │   ├── models/
-    │   ├── routes/
-    │   ├── middleware/
-    │   └── config/
-    ├── package.json
-    └── tsconfig.json
-```
-
-## 🚀 Installation
 
 ### Prerequisites
 - Node.js (v16 or higher)
@@ -115,299 +80,58 @@ cd backend
 npm install
 ```
 
-## 🔧 Environment Variables
-
-### Frontend (.env)
-```env
-# For Vite
-VITE_API_URL=http://localhost:5000/api
-
-# For Create React App (alternative)
-REACT_APP_API_URL=http://localhost:5000/api
-```
-
 ### Backend (.env)
-```env
-# Server
 PORT=5000
+MONGODB_URI="mongodb+srv://jishnumindstory_db_user:kckSFXbYPU3uvnFU@cluster0.lrzo2lo.mongodb.net/?appName=Cluster0"
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 NODE_ENV=development
 
-# Database (PostgreSQL)
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=resort_booking
-DB_USER=your_username
-DB_PASSWORD=your_password
-
-# OR MongoDB
-MONGODB_URI=mongodb://localhost:27017/resort_booking
-
-# JWT
-JWT_SECRET=your_jwt_secret_key_here
-JWT_EXPIRE=7d
-
-# File Upload
-MAX_FILE_SIZE=5242880
-UPLOAD_PATH=./uploads
-```
-
 ## 📚 API Documentation
+Authentication Routes
+| Method   | Endpoint       | Description                                 |
+| -------- | -------------- | ------------------------------------------- |
+| **POST** | `/register`    | Register a new user (with validation).      |
+| **POST** | `/login`       | Login for normal users (with validation).   |
+| **POST** | `/admin/login` | Login route for admin users.                |
+| **GET**  | `/profile`     | Get authenticated user profile (Protected). |
+
+Booking Routes
+| Method     | Endpoint                | Middleware                 | Description                        |
+| ---------- | ----------------------- | -------------------------- | ---------------------------------- |
+| **POST**   | `/`                     | protect, bookingValidation | Create a new booking.              |
+| **GET**    | `/`                     | protect, admin             | Get all bookings (Admin only).     |
+| **GET**    | `/user`                 | protect                    | Get bookings of logged-in user.    |
+| **GET**    | `/user/:userId`         | protect                    | Get bookings of a specific user.   |
+| **GET**    | `/:id`                  | protect                    | Get booking by ID.                 |
+| **PATCH**  | `/:id/status`           | protect, admin             | Update booking status.             |
+| **PATCH**  | `/:id/start-cooking`    | protect, admin             | Mark order as “cooking started”.   |
+| **PATCH**  | `/:id/complete-cooking` | protect, admin             | Mark order as “cooking completed”. |
+| **DELETE** | `/:id`                  | protect, admin             | Delete a booking.                  |
+
+Public Routes
+| Method  | Endpoint | Description          |
+| ------- | -------- | -------------------- |
+| **GET** | `/`      | Get all packages.    |
+| **GET** | `/:id`   | Get a package by ID. |
+
+Admin Routes (Protected + Image Upload)
+
+| Method     | Endpoint      | Middleware                                                                | Description                            |
+| ---------- | ------------- | ------------------------------------------------------------------------- | -------------------------------------- |
+| **POST**   | `/`           | protect, admin, uploadPackageImages, handleMulterError, packageValidation | Create a new package with images.      |
+| **PUT**    | `/:id`        | protect, admin, uploadPackageImages, handleMulterError                    | Update package info + images.          |
+| **DELETE** | `/:id`        | protect, admin                                                            | Delete a package.                      |
+| **PATCH**  | `/:id/toggle` | protect, admin                                                            | Toggle package active/inactive status. |
+| **DELETE** | `/:id/images` | protect, admin                                                            | Delete a single package image.         |
+
+
+
+
 
 ### Base URL
 ```
 http://localhost:5000/api
 ```
-
-### Authentication Endpoints
-
-#### Register User
-```http
-POST /auth/register
-Content-Type: application/json
-
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "password123",
-  "phone": "+1234567890"
-}
-```
-
-#### User Login
-```http
-POST /auth/login
-Content-Type: application/json
-
-{
-  "email": "john@example.com",
-  "password": "password123"
-}
-```
-
-#### Admin Login
-```http
-POST /auth/admin/login
-Content-Type: application/json
-
-{
-  "email": "admin@resort.com",
-  "password": "admin123"
-}
-```
-
-#### Get User Profile
-```http
-GET /auth/profile
-Authorization: Bearer {token}
-```
-
-#### Update Profile
-```http
-PUT /auth/profile
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{
-  "name": "John Updated",
-  "phone": "+1234567890"
-}
-```
-
-### Booking Endpoints
-
-#### Create Booking
-```http
-POST /bookings
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{
-  "packageId": "package_id",
-  "checkInDate": "2024-12-01",
-  "checkOutDate": "2024-12-05",
-  "guests": 2,
-  "specialRequests": "Late check-in preferred"
-}
-```
-
-#### Get All Bookings (Admin)
-```http
-GET /bookings
-Authorization: Bearer {admin_token}
-Query Parameters: ?status=pending&page=1&limit=10
-```
-
-#### Get User Bookings
-```http
-GET /bookings/user
-Authorization: Bearer {token}
-
-# Or for specific user (admin only)
-GET /bookings/user/{userId}
-Authorization: Bearer {admin_token}
-```
-
-#### Get Booking by ID
-```http
-GET /bookings/{id}
-Authorization: Bearer {token}
-```
-
-#### Update Booking
-```http
-PUT /bookings/{id}
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{
-  "checkInDate": "2024-12-02",
-  "guests": 3
-}
-```
-
-#### Update Booking Status (Admin)
-```http
-PATCH /bookings/{id}/status
-Authorization: Bearer {admin_token}
-Content-Type: application/json
-
-{
-  "status": "confirmed"
-}
-```
-
-#### Start Cooking (Admin)
-```http
-PATCH /bookings/{id}/start-cooking
-Authorization: Bearer {admin_token}
-```
-
-#### Complete Cooking (Admin)
-```http
-PATCH /bookings/{id}/complete-cooking
-Authorization: Bearer {admin_token}
-```
-
-#### Delete Booking
-```http
-DELETE /bookings/{id}
-Authorization: Bearer {token}
-```
-
-### Package Endpoints
-
-#### Get All Packages
-```http
-GET /packages
-Query Parameters: ?active=true&page=1&limit=10
-```
-
-#### Get Package by ID
-```http
-GET /packages/{id}
-```
-
-#### Create Package (Admin)
-```http
-POST /packages
-Authorization: Bearer {admin_token}
-Content-Type: multipart/form-data
-
-{
-  "name": "Deluxe Beach Villa",
-  "description": "Luxury beachfront accommodation",
-  "price": 299.99,
-  "category": "Accommodation",
-  "features": ["Ocean View", "Private Pool", "Free WiFi"],
-  "images": [file1, file2, file3]
-}
-```
-
-#### Update Package (Admin)
-```http
-PUT /packages/{id}
-Authorization: Bearer {admin_token}
-Content-Type: multipart/form-data
-
-{
-  "name": "Updated Package Name",
-  "price": 349.99,
-  "images": [new_file]
-}
-```
-
-#### Delete Package (Admin)
-```http
-DELETE /packages/{id}
-Authorization: Bearer {admin_token}
-```
-
-#### Toggle Package Status (Admin)
-```http
-PATCH /packages/{id}/toggle
-Authorization: Bearer {admin_token}
-```
-
-#### Delete Package Image (Admin)
-```http
-DELETE /packages/{id}/images
-Authorization: Bearer {admin_token}
-Content-Type: application/json
-
-{
-  "imageUrl": "https://example.com/image.jpg"
-}
-```
-
-### User Management Endpoints (Admin Only)
-
-#### Get All Users
-```http
-GET /users
-Authorization: Bearer {admin_token}
-Query Parameters: ?role=user&page=1&limit=10
-```
-
-#### Get User by ID
-```http
-GET /users/{id}
-Authorization: Bearer {admin_token}
-```
-
-#### Update User
-```http
-PUT /users/{id}
-Authorization: Bearer {admin_token}
-Content-Type: application/json
-
-{
-  "name": "Updated Name",
-  "email": "updated@example.com"
-}
-```
-
-#### Update User Role
-```http
-PATCH /users/{id}/role
-Authorization: Bearer {admin_token}
-Content-Type: application/json
-
-{
-  "role": "admin"
-}
-```
-
-#### Delete User
-```http
-DELETE /users/{id}
-Authorization: Bearer {admin_token}
-```
-
-## 💡 Usage
-
-### Running the Application
-
-#### Development Mode
 
 **Frontend:**
 ```bash
