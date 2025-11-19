@@ -152,7 +152,7 @@ npm run dev
 **Frontend:**
 ```bash
 npm run build
-npm run preview
+npm run dev
 ```
 
 **Backend:**
