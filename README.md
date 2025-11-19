@@ -593,7 +593,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
+- **Your Name** - *Initial work* - https://github.com/jishnu-nks-2002
 
 ## 🙏 Acknowledgments
 
@@ -607,4 +607,4 @@ For support, email support@resortbooking.com or open an issue in the repository.
 
 ---
 
-**Made with ❤️ by [Your Name]**
+**Made with by [jishnu]**
