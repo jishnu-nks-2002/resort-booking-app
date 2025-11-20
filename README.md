@@ -12,8 +12,7 @@ A full-stack resort booking platform built with React/Vite frontend and Node.js 
 - [API Documentation](#api-documentation)
 - [Usage](#usage)
 - [Screenshots](#screenshots)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
+
 
 ## ✨ Features
 
@@ -25,23 +24,23 @@ A full-stack resort booking platform built with React/Vite frontend and Node.js 
 - **User Authentication**: Secure login and registration
 - **User Dashboard**: View and manage bookings
 - **Admin Panel**: Comprehensive booking and package management
-- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Responsive Design**: Mobile-first approach with Tailwind CSS and Gsap for animation
 
 ### Backend Features
-- **RESTful API**: Built with Node.js and Express/TypeScript
+- **RESTful API**: Built with Node.js and Express/JavaScript
 - **Authentication & Authorization**: JWT-based secure authentication
 - **Role-Based Access Control**: User and Admin roles
 - **Booking Management**: Full CRUD operations for bookings
 - **Package Management**: Create and manage resort packages with image uploads
 - **User Management**: Admin user management capabilities
-- **Database**: PostgreSQL/MongoDB with proper schema design
+- **Database**: MongoDB with proper schema design
 - **Validation & Sanitization**: Input validation and security best practices
 
 ## 🛠️ Tech Stack
 
 ### Frontend
 - **Framework**: React 18+ / Vite
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS, CSS and Gsap
 - **HTTP Client**: Axios
 - **State Management**: React Hooks
 - **Routing**: React Router DOM
@@ -50,47 +49,12 @@ A full-stack resort booking platform built with React/Vite frontend and Node.js 
 ### Backend
 - **Runtime**: Node.js
 - **Framework**: Express.js
-- **Language**: TypeScript
-- **Database**: PostgreSQL / MongoDB
+- **Language**: JavaScript
+- **Database**: MongoDB
 - **Authentication**: JWT (jsonwebtoken)
 - **File Upload**: Multer
-- **Validation**: Express Validator / Joi
+- **Validation**: Express Validator
 
-## 📁 Project Structure
-
-```
-resort-booking-app/
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Hero.jsx
-│   │   │   ├── Services.jsx
-│   │   │   ├── Gallery.jsx
-│   │   │   └── Footer.jsx
-│   │   ├── pages/
-│   │   │   ├── Home.jsx
-│   │   │   ├── Login.jsx
-│   │   │   ├── Register.jsx
-│   │   │   ├── Bookings.jsx
-│   │   │   └── Admin/
-│   │   ├── services/
-│   │   │   └── api.js
-│   │   └── App.jsx
-│   ├── package.json
-│   └── vite.config.js
-│
-└── backend/
-    ├── src/
-    │   ├── controllers/
-    │   ├── models/
-    │   ├── routes/
-    │   ├── middleware/
-    │   └── config/
-    ├── package.json
-    └── tsconfig.json
-```
-
-## 🚀 Installation
 
 ### Prerequisites
 - Node.js (v16 or higher)
@@ -116,299 +80,58 @@ cd backend
 npm install
 ```
 
-## 🔧 Environment Variables
-
-### Frontend (.env)
-```env
-# For Vite
-VITE_API_URL=http://localhost:5000/api
-
-# For Create React App (alternative)
-REACT_APP_API_URL=http://localhost:5000/api
-```
-
 ### Backend (.env)
-```env
-# Server
 PORT=5000
+MONGODB_URI="mongodb+srv://jishnumindstory_db_user:kckSFXbYPU3uvnFU@cluster0.lrzo2lo.mongodb.net/?appName=Cluster0"
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 NODE_ENV=development
 
-# Database (PostgreSQL)
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=resort_booking
-DB_USER=your_username
-DB_PASSWORD=your_password
-
-# OR MongoDB
-MONGODB_URI=mongodb://localhost:27017/resort_booking
-
-# JWT
-JWT_SECRET=your_jwt_secret_key_here
-JWT_EXPIRE=7d
-
-# File Upload
-MAX_FILE_SIZE=5242880
-UPLOAD_PATH=./uploads
-```
-
 ## 📚 API Documentation
+Authentication Routes
+| Method   | Endpoint       | Description                                 |
+| -------- | -------------- | ------------------------------------------- |
+| **POST** | `/register`    | Register a new user (with validation).      |
+| **POST** | `/login`       | Login for normal users (with validation).   |
+| **POST** | `/admin/login` | Login route for admin users.                |
+| **GET**  | `/profile`     | Get authenticated user profile (Protected). |
+
+Booking Routes
+| Method     | Endpoint                | Middleware                 | Description                        |
+| ---------- | ----------------------- | -------------------------- | ---------------------------------- |
+| **POST**   | `/`                     | protect, bookingValidation | Create a new booking.              |
+| **GET**    | `/`                     | protect, admin             | Get all bookings (Admin only).     |
+| **GET**    | `/user`                 | protect                    | Get bookings of logged-in user.    |
+| **GET**    | `/user/:userId`         | protect                    | Get bookings of a specific user.   |
+| **GET**    | `/:id`                  | protect                    | Get booking by ID.                 |
+| **PATCH**  | `/:id/status`           | protect, admin             | Update booking status.             |
+| **PATCH**  | `/:id/start-cooking`    | protect, admin             | Mark order as “cooking started”.   |
+| **PATCH**  | `/:id/complete-cooking` | protect, admin             | Mark order as “cooking completed”. |
+| **DELETE** | `/:id`                  | protect, admin             | Delete a booking.                  |
+
+Public Routes
+| Method  | Endpoint | Description          |
+| ------- | -------- | -------------------- |
+| **GET** | `/`      | Get all packages.    |
+| **GET** | `/:id`   | Get a package by ID. |
+
+Admin Routes (Protected + Image Upload)
+
+| Method     | Endpoint      | Middleware                                                                | Description                            |
+| ---------- | ------------- | ------------------------------------------------------------------------- | -------------------------------------- |
+| **POST**   | `/`           | protect, admin, uploadPackageImages, handleMulterError, packageValidation | Create a new package with images.      |
+| **PUT**    | `/:id`        | protect, admin, uploadPackageImages, handleMulterError                    | Update package info + images.          |
+| **DELETE** | `/:id`        | protect, admin                                                            | Delete a package.                      |
+| **PATCH**  | `/:id/toggle` | protect, admin                                                            | Toggle package active/inactive status. |
+| **DELETE** | `/:id/images` | protect, admin                                                            | Delete a single package image.         |
+
+
+
+
 
 ### Base URL
 ```
 http://localhost:5000/api
 ```
-
-### Authentication Endpoints
-
-#### Register User
-```http
-POST /auth/register
-Content-Type: application/json
-
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "password123",
-  "phone": "+1234567890"
-}
-```
-
-#### User Login
-```http
-POST /auth/login
-Content-Type: application/json
-
-{
-  "email": "john@example.com",
-  "password": "password123"
-}
-```
-
-#### Admin Login
-```http
-POST /auth/admin/login
-Content-Type: application/json
-
-{
-  "email": "admin@resort.com",
-  "password": "admin123"
-}
-```
-
-#### Get User Profile
-```http
-GET /auth/profile
-Authorization: Bearer {token}
-```
-
-#### Update Profile
-```http
-PUT /auth/profile
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{
-  "name": "John Updated",
-  "phone": "+1234567890"
-}
-```
-
-### Booking Endpoints
-
-#### Create Booking
-```http
-POST /bookings
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{
-  "packageId": "package_id",
-  "checkInDate": "2024-12-01",
-  "checkOutDate": "2024-12-05",
-  "guests": 2,
-  "specialRequests": "Late check-in preferred"
-}
-```
-
-#### Get All Bookings (Admin)
-```http
-GET /bookings
-Authorization: Bearer {admin_token}
-Query Parameters: ?status=pending&page=1&limit=10
-```
-
-#### Get User Bookings
-```http
-GET /bookings/user
-Authorization: Bearer {token}
-
-# Or for specific user (admin only)
-GET /bookings/user/{userId}
-Authorization: Bearer {admin_token}
-```
-
-#### Get Booking by ID
-```http
-GET /bookings/{id}
-Authorization: Bearer {token}
-```
-
-#### Update Booking
-```http
-PUT /bookings/{id}
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{
-  "checkInDate": "2024-12-02",
-  "guests": 3
-}
-```
-
-#### Update Booking Status (Admin)
-```http
-PATCH /bookings/{id}/status
-Authorization: Bearer {admin_token}
-Content-Type: application/json
-
-{
-  "status": "confirmed"
-}
-```
-
-#### Start Cooking (Admin)
-```http
-PATCH /bookings/{id}/start-cooking
-Authorization: Bearer {admin_token}
-```
-
-#### Complete Cooking (Admin)
-```http
-PATCH /bookings/{id}/complete-cooking
-Authorization: Bearer {admin_token}
-```
-
-#### Delete Booking
-```http
-DELETE /bookings/{id}
-Authorization: Bearer {token}
-```
-
-### Package Endpoints
-
-#### Get All Packages
-```http
-GET /packages
-Query Parameters: ?active=true&page=1&limit=10
-```
-
-#### Get Package by ID
-```http
-GET /packages/{id}
-```
-
-#### Create Package (Admin)
-```http
-POST /packages
-Authorization: Bearer {admin_token}
-Content-Type: multipart/form-data
-
-{
-  "name": "Deluxe Beach Villa",
-  "description": "Luxury beachfront accommodation",
-  "price": 299.99,
-  "category": "Accommodation",
-  "features": ["Ocean View", "Private Pool", "Free WiFi"],
-  "images": [file1, file2, file3]
-}
-```
-
-#### Update Package (Admin)
-```http
-PUT /packages/{id}
-Authorization: Bearer {admin_token}
-Content-Type: multipart/form-data
-
-{
-  "name": "Updated Package Name",
-  "price": 349.99,
-  "images": [new_file]
-}
-```
-
-#### Delete Package (Admin)
-```http
-DELETE /packages/{id}
-Authorization: Bearer {admin_token}
-```
-
-#### Toggle Package Status (Admin)
-```http
-PATCH /packages/{id}/toggle
-Authorization: Bearer {admin_token}
-```
-
-#### Delete Package Image (Admin)
-```http
-DELETE /packages/{id}/images
-Authorization: Bearer {admin_token}
-Content-Type: application/json
-
-{
-  "imageUrl": "https://example.com/image.jpg"
-}
-```
-
-### User Management Endpoints (Admin Only)
-
-#### Get All Users
-```http
-GET /users
-Authorization: Bearer {admin_token}
-Query Parameters: ?role=user&page=1&limit=10
-```
-
-#### Get User by ID
-```http
-GET /users/{id}
-Authorization: Bearer {admin_token}
-```
-
-#### Update User
-```http
-PUT /users/{id}
-Authorization: Bearer {admin_token}
-Content-Type: application/json
-
-{
-  "name": "Updated Name",
-  "email": "updated@example.com"
-}
-```
-
-#### Update User Role
-```http
-PATCH /users/{id}/role
-Authorization: Bearer {admin_token}
-Content-Type: application/json
-
-{
-  "role": "admin"
-}
-```
-
-#### Delete User
-```http
-DELETE /users/{id}
-Authorization: Bearer {admin_token}
-```
-
-## 💡 Usage
-
-### Running the Application
-
-#### Development Mode
 
 **Frontend:**
 ```bash
@@ -429,7 +152,7 @@ npm run dev
 **Frontend:**
 ```bash
 npm run build
-npm run preview
+npm run dev
 ```
 
 **Backend:**
@@ -448,64 +171,34 @@ Password: admin123
 
 ### Hero Section
 Modern landing page with stunning resort imagery and clear call-to-action.
+<img width="1915" height="933" alt="image" src="https://github.com/user-attachments/assets/f8e31014-71fc-4d5f-ae35-fe4d8f5ed618" />
+
 
 ### Services Section
 Three-column layout showcasing Accommodation, Adventure Activities, and Wellness & Spa services.
+<img width="1741" height="975" alt="image" src="https://github.com/user-attachments/assets/a9341514-9525-4acc-910c-46496157095c" />
+
 
 ### Gallery
 Grid layout displaying resort images with responsive design.
+<img width="1030" height="701" alt="image" src="https://github.com/user-attachments/assets/4bf4c1cf-fe3f-48ca-83ec-84db0432d543" />
 
-### Booking Form
+
+### Booking packages
 User-friendly form with validation and real-time feedback.
+<img width="1919" height="931" alt="image" src="https://github.com/user-attachments/assets/f8a9d910-30fc-4c01-84e9-2e35d480faf2" />
+
 
 ### Admin Dashboard
 Comprehensive dashboard for managing bookings, packages, and users.
+<img width="1901" height="875" alt="image" src="https://github.com/user-attachments/assets/b9e92255-4998-43b4-99ab-89af58a1cb2d" /><img width="1916" height="936" alt="image" src="https://github.com/user-attachments/assets/78eb31ce-6c33-4e62-87ad-b0f6a5323ed9" />
+<img width="1910" height="943" alt="image" src="https://github.com/user-attachments/assets/3bf6d5ce-9482-41ad-86c8-3e24c84640ab" />
+<img width="1604" height="720" alt="image" src="https://github.com/user-attachments/assets/db67891f-1fe0-4f80-b9e7-5a8288de183e" />
 
-## 🚀 Deployment
+<img width="1910" height="909" alt="image" src="https://github.com/user-attachments/assets/eaa3b297-4ab7-4878-91b5-0aa48511ab67" />
+<img width="1882" height="936" alt="image" src="https://github.com/user-attachments/assets/52eb195f-ecb9-4ed7-bd9f-822f162739a9" />
 
-### Frontend Deployment (Vercel/Netlify)
 
-**Vercel:**
-```bash
-npm install -g vercel
-cd frontend
-vercel
-```
-
-**Netlify:**
-```bash
-npm install -g netlify-cli
-cd frontend
-npm run build
-netlify deploy --prod
-```
-
-### Backend Deployment (Render/Heroku/Railway)
-
-**Render:**
-1. Connect GitHub repository
-2. Set environment variables
-3. Deploy from dashboard
-
-**Heroku:**
-```bash
-heroku create your-app-name
-git push heroku main
-heroku config:set JWT_SECRET=your_secret
-```
-
-**Docker:**
-```dockerfile
-# Dockerfile for backend
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-EXPOSE 5000
-CMD ["npm", "start"]
-```
 
 ## 🔐 Security Features
 
@@ -513,24 +206,7 @@ CMD ["npm", "start"]
 - Password hashing with bcrypt
 - Input validation and sanitization
 - CORS configuration
-- Rate limiting
-- XSS protection
-- SQL injection prevention
 - Secure file upload handling
-
-## 🧪 Testing
-
-```bash
-# Run frontend tests
-cd frontend
-npm test
-
-# Run backend tests
-cd backend
-npm test
-```
-
-## 📝 Database Schema
 
 ### Users Table
 ```sql
@@ -577,23 +253,11 @@ CREATE TABLE packages (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-```
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 👥 Authors
 
-- **Your Name** - *Initial work* - https://github.com/jishnu-nks-2002
+- https://github.com/jishnu-nks-2002
 
 ## 🙏 Acknowledgments
 
@@ -601,10 +265,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Thanks to all contributors
 - Inspired by modern resort booking platforms
 
-## 📞 Support
-
-For support, email support@resortbooking.com or open an issue in the repository.
-
----
 
 **Made with by [jishnu]**
