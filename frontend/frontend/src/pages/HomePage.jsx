@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import { 
   Home as HomeIcon, 
@@ -30,6 +29,7 @@ const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showBookingModal, setShowBookingModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState(null);
   const [bookingForm, setBookingForm] = useState({
     customerName: '',
     email: '',
@@ -158,7 +158,10 @@ const HomePage = () => {
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
   const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
 
-  const handleBookNow = () => setShowBookingModal(true);
+  const handleBookNow = () => {
+    setSelectedPackage(null);
+    setShowBookingModal(true);
+  };
 
   const handleSelectPackage = (pkg) => {
     const items = pkg.features.map((feature, idx) => ({
@@ -168,6 +171,7 @@ const HomePage = () => {
       quantity: 1
     }));
     setSelectedItems(items);
+    setSelectedPackage(pkg);
     setShowBookingModal(true);
   };
 
@@ -207,6 +211,7 @@ const HomePage = () => {
       setLoading(false);
       setShowBookingModal(false);
       setSelectedItems([]);
+      setSelectedPackage(null);
       alert('Booking confirmed!');
     }, 1500);
   };
@@ -492,7 +497,10 @@ const HomePage = () => {
                 )}
               </div>
               <button
-                onClick={() => setShowBookingModal(false)}
+                onClick={() => {
+                  setShowBookingModal(false);
+                  setSelectedPackage(null);
+                }}
                 className="text-gray-500 hover:text-gray-700 transition-colors"
               >
                 <X className="w-6 h-6" />
@@ -618,9 +626,9 @@ const HomePage = () => {
                     {selectedPackage && (
                       <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white p-3 rounded-lg text-center mb-3">
                         <span className="font-bold">{selectedPackage.name}</span>
-                        {selectedPackage.discountPercent > 0 && (
+                        {selectedPackage.discount > 0 && (
                           <span className="ml-2 bg-white text-cyan-600 px-2 py-1 rounded-full text-sm font-bold">
-                            {selectedPackage.discountPercent}% OFF
+                            {selectedPackage.discount}% OFF
                           </span>
                         )}
                       </div>
@@ -660,7 +668,7 @@ const HomePage = () => {
                       
                       {calculateTotal().discount > 0 && (
                         <div className="flex justify-between text-green-600 font-semibold">
-                          <span>Package Discount ({selectedPackage.discountPercent}%):</span>
+                          <span>Package Discount ({selectedPackage.discount}%):</span>
                           <span>-${calculateTotal().discount.toFixed(2)}</span>
                         </div>
                       )}
@@ -694,7 +702,10 @@ const HomePage = () => {
               <div className="flex justify-end space-x-4">
                 <button
                   type="button"
-                  onClick={() => setShowBookingModal(false)}
+                  onClick={() => {
+                    setShowBookingModal(false);
+                    setSelectedPackage(null);
+                  }}
                   className="btn-secondary"
                   disabled={loading}
                 >
