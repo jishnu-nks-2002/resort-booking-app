@@ -345,7 +345,7 @@ const AdminDashboard = () => {
                             className="flex items-center space-x-2 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 text-sm font-medium"
                           >
                             <Play className="w-4 h-4" />
-                            <span>Start Cooking</span>
+                            <span>Start preparing</span>
                           </button>
                         )}
 
