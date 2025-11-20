@@ -24,6 +24,7 @@ import {
 import { useAuth } from '../context/AuthContext';
 import { bookingAPI, packageAPI } from '../utils/api';
 import { toast } from 'react-toastify';
+import CustomCursor from '../components/CustomCursor';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -484,25 +485,25 @@ const HomePage = () => {
 
   const services = [
     {
-      icon: <HomeIcon className="w-12 h-12" />,
+      icon: <HomeIcon className="w-8 h-8 sm:w-10 lg:w-12 sm:h-10 lg:h-12" />,
       title: 'Luxury Accommodation',
       description: 'Premium rooms and suites with breathtaking ocean views and modern amenities.',
       gradient: 'from-blue-500 to-cyan-500',
     },
     {
-      icon: <Utensils className="w-12 h-12" />,
+      icon: <Utensils className="w-8 h-8 sm:w-10 lg:w-12 sm:h-10 lg:h-12" />,
       title: 'Gourmet Dining',
       description: 'World-class cuisine prepared by master chefs using fresh local ingredients.',
       gradient: 'from-orange-500 to-red-500',
     },
     {
-      icon: <Waves className="w-12 h-12" />,
+      icon: <Waves className="w-8 h-8 sm:w-10 lg:w-12 sm:h-10 lg:h-12" />,
       title: 'Water Adventures',
       description: 'Exciting water sports, diving, and beach activities for thrill-seekers.',
       gradient: 'from-teal-500 to-green-500',
     },
     {
-      icon: <Sparkles className="w-12 h-12" />,
+      icon: <Sparkles className="w-8 h-8 sm:w-10 lg:w-12 sm:h-10 lg:h-12" />,
       title: 'Wellness & Spa',
       description: 'Rejuvenate your body and mind with our world-class spa treatments.',
       gradient: 'from-purple-500 to-pink-500',
@@ -511,17 +512,17 @@ const HomePage = () => {
 
   const features = [
     {
-      icon: <Star className="w-6 h-6" />,
+      icon: <Star className="w-5 h-5 sm:w-6 sm:h-6" />,
       title: '5-Star Service',
       description: 'Exceptional hospitality and attention to detail'
     },
     {
-      icon: <Award className="w-6 h-6" />,
+      icon: <Award className="w-5 h-5 sm:w-6 sm:h-6" />,
       title: 'Award Winning',
       description: 'Recognized globally for excellence in hospitality'
     },
     {
-      icon: <Shield className="w-6 h-6" />,
+      icon: <Shield className="w-5 h-5 sm:w-6 sm:h-6" />,
       title: 'Safe & Secure',
       description: '24/7 security and health protocols in place'
     },
@@ -536,10 +537,11 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen">
+      <CustomCursor/>
       {/* Hero Section with Image Slider */}
       <section
         ref={heroRef}
-        className="relative h-screen overflow-hidden"
+        className="relative h-[100svh] sm:h-screen overflow-hidden"
       >
         {/* Background Slides */}
         <div className="absolute inset-0">
@@ -565,27 +567,27 @@ const HomePage = () => {
         {/* Slider Controls */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110"
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-4 h-4 sm:w-6 sm:h-6" />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110"
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6" />
         </button>
 
         {/* Slider Dots */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-3">
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-2 sm:space-x-3">
           {heroSlides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`transition-all duration-300 rounded-full ${
                 index === currentSlide
-                  ? 'w-12 h-3 bg-white'
-                  : 'w-3 h-3 bg-white/50 hover:bg-white/75'
+                  ? 'w-8 sm:w-12 h-2 sm:h-3 bg-white'
+                  : 'w-2 sm:w-3 h-2 sm:h-3 bg-white/50 hover:bg-white/75'
               }`}
             />
           ))}
@@ -595,19 +597,19 @@ const HomePage = () => {
         <div className="relative z-10 h-full flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="max-w-3xl">
-              <h1 className="hero-title text-6xl md:text-8xl font-bold mb-6 text-white leading-tight">
+              <h1 className="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-3 sm:mb-4 md:mb-6 text-white leading-tight">
                 {heroSlides[currentSlide].title}
               </h1>
-              <p className="hero-subtitle text-2xl md:text-4xl mb-4 text-cyan-300 font-light">
+              <p className="hero-subtitle text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-2 sm:mb-3 md:mb-4 text-cyan-300 font-light">
                 {heroSlides[currentSlide].subtitle}
               </p>
-              <p className="hero-description text-lg md:text-xl mb-8 text-gray-200">
+              <p className="hero-description text-base sm:text-lg md:text-xl mb-4 sm:mb-6 md:mb-8 text-gray-200">
                 {heroSlides[currentSlide].description}
               </p>
-              <div className="hero-buttons flex flex-wrap gap-4">
+              <div className="hero-buttons flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
                 <button 
                   onClick={handleBookNow} 
-                  className="btn-primary text-lg px-10 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-cyan-500/50"
+                  className="btn-primary text-base sm:text-lg px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-cyan-500/50 w-full sm:w-auto text-center"
                 >
                   Book Now
                 </button>
@@ -616,7 +618,7 @@ const HomePage = () => {
                     const element = servicesRef.current;
                     element?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="px-10 py-4 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold transform hover:scale-105 transition-all duration-300"
+                  className="px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-gray-900 font-bold transform hover:scale-105 transition-all duration-300 w-full sm:w-auto text-center"
                 >
                   Explore More
                 </button>
@@ -627,21 +629,21 @@ const HomePage = () => {
       </section>
 
       {/* Features Bar */}
-      <section ref={featuresRef} className="py-12 bg-white">
+      <section ref={featuresRef} className="py-8 sm:py-10 md:py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="feature-item flex items-center space-x-4 p-6 bg-gradient-to-r from-gray-50 to-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                className="feature-item flex items-center space-x-3 sm:space-x-4 p-4 sm:p-5 lg:p-6 bg-gradient-to-r from-gray-50 to-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                 style={{ opacity: 1 }}
               >
-                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center text-white">
+                <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center text-white">
                   {feature.icon}
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-900 text-lg">{feature.title}</h3>
-                  <p className="text-gray-600 text-sm">{feature.description}</p>
+                  <h3 className="font-bold text-gray-900 text-base sm:text-lg">{feature.title}</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm">{feature.description}</p>
                 </div>
               </div>
             ))}
@@ -650,34 +652,34 @@ const HomePage = () => {
       </section>
 
       {/* Services Section */}
-      <section ref={servicesRef} className="py-24 bg-gradient-to-b from-white to-gray-50">
+      <section ref={servicesRef} className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-900 mb-4">Our Premium Services</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mb-6"></div>
-            <p className="text-xl text-gray-600">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">Our Premium Services</h2>
+            <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mb-4 sm:mb-6"></div>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 px-4">
               Everything you need for an unforgettable experience
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="service-card group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                className="service-card group relative bg-white rounded-2xl p-6 sm:p-7 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
                 style={{ opacity: 1 }}
               >
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
                 
-                <div className="relative z-10 flex justify-center mb-6 text-gray-700 group-hover:text-cyan-600 transform group-hover:scale-110 transition-transform duration-500">
+                <div className="relative z-10 flex justify-center mb-4 sm:mb-5 lg:mb-6 text-gray-700 group-hover:text-cyan-600 transform group-hover:scale-110 transition-transform duration-500">
                   {service.icon}
                 </div>
                 
-                <h3 className="relative z-10 text-2xl font-bold text-gray-900 mb-4 text-center group-hover:text-cyan-600 transition-all duration-300">
+                <h3 className="relative z-10 text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 text-center group-hover:text-cyan-600 transition-all duration-300">
                   {service.title}
                 </h3>
                 
-                <p className="relative z-10 text-gray-600 text-center leading-relaxed">
+                <p className="relative z-10 text-gray-600 text-center leading-relaxed text-sm sm:text-base">
                   {service.description}
                 </p>
 
@@ -689,12 +691,12 @@ const HomePage = () => {
       </section>
 
       {/* Packages Section */}
-      <section ref={packagesRef} className="py-24 bg-gradient-to-br from-gray-50 via-cyan-50 to-blue-50">
+      <section ref={packagesRef} className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-gray-50 via-cyan-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-900 mb-4">Our Exclusive Packages</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mb-6"></div>
-            <p className="text-xl text-gray-600">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">Our Exclusive Packages</h2>
+            <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mb-4 sm:mb-6"></div>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 px-4">
               Choose the perfect package for your dream vacation
             </p>
           </div>
@@ -704,43 +706,43 @@ const HomePage = () => {
               <div className="spinner"></div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {/* Custom Package Card */}
               <div className="package-card group bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500" style={{ opacity: 1 }}>
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                   <img
                     src={customPackageCard.image}
                     alt={customPackageCard.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 right-4">
+                  <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
                     <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-2xl font-bold text-white">{customPackageCard.name}</h3>
-                      <span className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
+                      <h3 className="text-xl sm:text-2xl font-bold text-white">{customPackageCard.name}</h3>
+                      <span className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold animate-pulse">
                         CUSTOM
                       </span>
                     </div>
                   </div>
                 </div>
                 
-                <div className="p-6">
-                  <p className="text-gray-600 mb-6 min-h-[3rem]">
+                <div className="p-4 sm:p-5 lg:p-6">
+                  <p className="text-gray-600 mb-4 sm:mb-6 min-h-[3rem] text-sm sm:text-base">
                     {customPackageCard.description}
                   </p>
 
-                  <div className="space-y-3 mb-6">
+                  <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                     {['Choose your own accommodation', 'Select activities you love', 'Customize dining options', 'Flexible pricing'].map((text, idx) => (
                       <div key={idx} className="flex items-start text-gray-700 transform hover:translate-x-2 transition-transform duration-300">
-                        <CheckCircle className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                        <span className="text-sm">{text}</span>
+                        <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                        <span className="text-xs sm:text-sm">{text}</span>
                       </div>
                     ))}
                   </div>
 
                   <button
                     onClick={handleBookNow}
-                    className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-orange-500/50"
+                    className="w-full bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-orange-500/50 text-sm sm:text-base"
                   >
                     Create Custom Package
                   </button>
@@ -757,7 +759,7 @@ const HomePage = () => {
 
                 return (
                   <div key={pkg._id} className="package-card group bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500" style={{ opacity: 1 }}>
-                    <div className="relative h-64 overflow-hidden">
+                    <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                       <img
                         src={packageImages[currentImageIndex]}
                         alt={pkg.name}
@@ -771,27 +773,27 @@ const HomePage = () => {
                               e.stopPropagation();
                               handlePackageImagePrev(pkg._id, packageImages.length);
                             }}
-                            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100"
+                            className="absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1.5 sm:p-2 rounded-full transition-all opacity-0 group-hover:opacity-100"
                           >
-                            <ChevronLeft className="w-5 h-5" />
+                            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                           </button>
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
                               handlePackageImageNext(pkg._id, packageImages.length);
                             }}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all opacity-0 group-hover:opacity-100"
+                            className="absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1.5 sm:p-2 rounded-full transition-all opacity-0 group-hover:opacity-100"
                           >
-                            <ChevronRight className="w-5 h-5" />
+                            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                           </button>
                           
                           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-1">
                             {packageImages.map((_, idx) => (
                               <div
                                 key={idx}
-                                className={`w-2 h-2 rounded-full transition-all ${
+                                className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all ${
                                   idx === currentImageIndex
-                                    ? 'bg-white w-4'
+                                    ? 'bg-white w-3 sm:w-4'
                                     : 'bg-white/50'
                                 }`}
                               />
@@ -802,15 +804,15 @@ const HomePage = () => {
 
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
                       
-                      <div className="absolute bottom-4 left-4 right-4">
+                      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
                         <div className="flex items-center justify-between mb-2">
-                          <h3 className="text-2xl font-bold text-white">{pkg.name}</h3>
+                          <h3 className="text-xl sm:text-2xl font-bold text-white">{pkg.name}</h3>
                           {pkg.discountPercent > 0 && (
                             <span className={`${
                               pkg.type === 'luxury'
                                 ? 'bg-gradient-to-r from-yellow-400 to-yellow-600'
                                 : 'bg-gradient-to-r from-green-400 to-green-600'
-                            } text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg animate-pulse`}>
+                            } text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-bold shadow-lg animate-pulse`}>
                               {pkg.discountPercent}% OFF
                             </span>
                           )}
@@ -818,31 +820,31 @@ const HomePage = () => {
                       </div>
                     </div>
                     
-                    <div className="p-6">
-                      <p className="text-gray-600 mb-6 min-h-[3rem]">
+                    <div className="p-4 sm:p-5 lg:p-6">
+                      <p className="text-gray-600 mb-4 sm:mb-6 min-h-[3rem] text-sm sm:text-base">
                         {pkg.description}
                       </p>
 
-                      <div className="flex items-baseline mb-6">
-                        <span className="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                      <div className="flex items-baseline mb-4 sm:mb-6">
+                        <span className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
                           ${pkg.finalPrice.toFixed(2)}
                         </span>
                         {pkg.discountPercent > 0 && (
-                          <span className="text-gray-400 line-through ml-2 text-lg">
+                          <span className="text-gray-400 line-through ml-2 text-base sm:text-lg">
                             ${pkg.basePrice.toFixed(2)}
                           </span>
                         )}
                       </div>
 
-                      <ul className="space-y-3 mb-6 max-h-48 overflow-y-auto custom-scrollbar">
+                      <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6 max-h-40 sm:max-h-48 overflow-y-auto custom-scrollbar">
                         {pkg.features.slice(0, 4).map((feature, idx) => (
                           <li key={idx} className="flex items-start text-gray-700 transform hover:translate-x-2 transition-transform duration-300">
-                            <CheckCircle className="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                            <span className="text-sm">{feature}</span>
+                            <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                            <span className="text-xs sm:text-sm">{feature}</span>
                           </li>
                         ))}
                         {pkg.features.length > 4 && (
-                          <li className="text-sm text-gray-500 italic">
+                          <li className="text-xs sm:text-sm text-gray-500 italic">
                             +{pkg.features.length - 4} more features...
                           </li>
                         )}
@@ -854,7 +856,7 @@ const HomePage = () => {
                           pkg.type === 'luxury'
                             ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700'
                             : 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700'
-                        } text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg`}
+                        } text-white font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base`}
                       >
                         Book {pkg.name}
                       </button>
@@ -868,18 +870,18 @@ const HomePage = () => {
       </section>
 
       {/* Gallery Section */}
-      <section ref={galleryRef} className="py-24 bg-gradient-to-b from-gray-900 to-black text-white overflow-hidden">
+      <section ref={galleryRef} className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-gray-900 to-black text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4">Explore Paradise</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mb-6"></div>
-            <p className="text-xl text-gray-400">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">Explore Paradise</h2>
+            <div className="w-20 sm:w-24 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto mb-4 sm:mb-6"></div>
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 px-4">
               Glimpse into your next unforgettable vacation
             </p>
           </div>
 
           <div className="gallery-container relative" style={{ opacity: 1 }}>
-            <div className="relative h-[600px] rounded-3xl overflow-hidden shadow-2xl">
+            <div className="relative h-64 sm:h-96 md:h-[500px] lg:h-[600px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
               {galleryImages.map((image, index) => (
                 <div
                   key={index}
@@ -896,17 +898,17 @@ const HomePage = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
                   
-                  <div className="absolute bottom-0 left-0 right-0 p-8 text-center">
-                    <h3 className="text-3xl font-bold mb-2">{image.caption}</h3>
-                    <div className="flex justify-center space-x-2 mt-4">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 text-center">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2">{image.caption}</h3>
+                    <div className="flex justify-center space-x-1.5 sm:space-x-2 mt-3 sm:mt-4">
                       {galleryImages.map((_, idx) => (
                         <button
                           key={idx}
                           onClick={() => setGalleryIndex(idx)}
                           className={`transition-all ${
                             idx === galleryIndex
-                              ? 'w-8 h-2 bg-white'
-                              : 'w-2 h-2 bg-white/50 hover:bg-white/75'
+                              ? 'w-6 sm:w-8 h-1.5 sm:h-2 bg-white'
+                              : 'w-1.5 sm:w-2 h-1.5 sm:h-2 bg-white/50 hover:bg-white/75'
                           } rounded-full`}
                         />
                       ))}
@@ -916,14 +918,14 @@ const HomePage = () => {
               ))}
             </div>
 
-            <div className="mt-8 flex justify-center space-x-4 overflow-x-auto pb-4">
+            <div className="mt-4 sm:mt-6 lg:mt-8 flex justify-start sm:justify-center space-x-2 sm:space-x-3 lg:space-x-4 overflow-x-auto pb-4 scrollbar-hide">
               {galleryImages.map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setGalleryIndex(index)}
-                  className={`flex-shrink-0 w-32 h-24 rounded-lg overflow-hidden transition-all ${
+                  className={`flex-shrink-0 w-20 h-16 sm:w-28 sm:h-20 lg:w-32 lg:h-24 rounded-lg overflow-hidden transition-all ${
                     index === galleryIndex
-                      ? 'ring-4 ring-cyan-500 scale-110'
+                      ? 'ring-2 sm:ring-4 ring-cyan-500 scale-110'
                       : 'opacity-50 hover:opacity-100'
                   }`}
                 >
@@ -941,13 +943,13 @@ const HomePage = () => {
 
       {/* Booking Modal */}
       {showBookingModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-fade-in">
-          <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
-            <div className="sticky top-0 bg-white border-b px-6 py-4 flex justify-between items-center z-10">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4 animate-fade-in overflow-y-auto">
+          <div className="bg-white rounded-xl max-w-4xl w-full my-4 sm:my-8 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto animate-scale-in">
+            <div className="sticky top-0 bg-white border-b px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center z-10">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">Create Booking</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Create Booking</h2>
                 {selectedPackage && (
-                  <span className={`badge mt-2 ${
+                  <span className={`badge mt-1 sm:mt-2 text-xs sm:text-sm ${
                     selectedPackage.type === 'luxury'
                       ? 'bg-yellow-100 text-yellow-800'
                       : 'bg-green-100 text-green-800'
@@ -960,14 +962,14 @@ const HomePage = () => {
                 onClick={() => setShowBookingModal(false)}
                 className="text-gray-500 hover:text-gray-700 transition-colors"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
 
-            <form onSubmit={handleSubmitBooking} className="p-6 space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmitBooking} className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                     Full Name
                   </label>
                   <input
@@ -977,11 +979,11 @@ const HomePage = () => {
                     onChange={(e) =>
                       setBookingForm({ ...bookingForm, customerName: e.target.value })
                     }
-                    className="input-field"
+                    className="input-field text-sm sm:text-base"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                     Email
                   </label>
                   <input
@@ -991,14 +993,14 @@ const HomePage = () => {
                     onChange={(e) =>
                       setBookingForm({ ...bookingForm, email: e.target.value })
                     }
-                    className="input-field"
+                    className="input-field text-sm sm:text-base"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                     Phone
                   </label>
                   <input
@@ -1008,11 +1010,11 @@ const HomePage = () => {
                     onChange={(e) =>
                       setBookingForm({ ...bookingForm, phone: e.target.value })
                     }
-                    className="input-field"
+                    className="input-field text-sm sm:text-base"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                     Number of Guests
                   </label>
                   <input
@@ -1023,14 +1025,14 @@ const HomePage = () => {
                     onChange={(e) =>
                       setBookingForm({ ...bookingForm, numberOfGuests: parseInt(e.target.value) })
                     }
-                    className="input-field"
+                    className="input-field text-sm sm:text-base"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                     Check-in Date
                   </label>
                   <input
@@ -1041,11 +1043,11 @@ const HomePage = () => {
                     onChange={(e) =>
                       setBookingForm({ ...bookingForm, checkInDate: e.target.value })
                     }
-                    className="input-field"
+                    className="input-field text-sm sm:text-base"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                     Check-out Date
                   </label>
                   <input
@@ -1056,35 +1058,35 @@ const HomePage = () => {
                     onChange={(e) =>
                       setBookingForm({ ...bookingForm, checkOutDate: e.target.value })
                     }
-                    className="input-field"
+                    className="input-field text-sm sm:text-base"
                   />
                 </div>
               </div>
 
               <div>
-                <div className="flex justify-between items-center mb-4">
-                  <label className="block text-sm font-medium text-gray-700">
+                <div className="flex justify-between items-center mb-3 sm:mb-4">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700">
                     Selected Items ({selectedItems.length})
                   </label>
                   {!selectedPackage && (
                     <button
                       type="button"
                       onClick={handleAddItem}
-                      className="flex items-center space-x-2 text-primary-600 hover:text-primary-700 font-medium"
+                      className="flex items-center space-x-1 sm:space-x-2 text-primary-600 hover:text-primary-700 font-medium text-xs sm:text-sm"
                     >
-                      <Plus className="w-5 h-5" />
+                      <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
                       <span>Add Item</span>
                     </button>
                   )}
                 </div>
 
                 {selectedItems.length > 0 && (
-                  <div className="space-y-2 mb-4">
+                  <div className="space-y-2 mb-3 sm:mb-4">
                     {selectedPackage && (
-                      <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white p-3 rounded-lg text-center mb-3">
-                        <span className="font-bold">{selectedPackage.name}</span>
+                      <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white p-2 sm:p-3 rounded-lg text-center mb-2 sm:mb-3">
+                        <span className="font-bold text-sm sm:text-base">{selectedPackage.name}</span>
                         {selectedPackage.discountPercent > 0 && (
-                          <span className="ml-2 bg-white text-cyan-600 px-2 py-1 rounded-full text-sm font-bold">
+                          <span className="ml-2 bg-white text-cyan-600 px-2 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-bold">
                             {selectedPackage.discountPercent}% OFF
                           </span>
                         )}
@@ -1094,45 +1096,47 @@ const HomePage = () => {
                     {selectedItems.map((item, index) => (
                       <div
                         key={index}
-                        className="flex justify-between items-center bg-gray-50 p-3 rounded-lg hover:bg-gray-100 transition-colors"
+                        className="flex justify-between items-center bg-gray-50 p-2 sm:p-3 rounded-lg hover:bg-gray-100 transition-colors"
                       >
-                        <div>
-                          <span className="font-medium">{item.name}</span>
-                          <span className="text-gray-600 text-sm ml-2">
-                            x{item.quantity}
-                          </span>
-                          <span className="text-cyan-600 font-medium ml-2">
-                            ${(item.price * item.quantity).toFixed(2)}
-                          </span>
+                        <div className="flex-1 min-w-0">
+                          <span className="font-medium text-sm sm:text-base block truncate">{item.name}</span>
+                          <div className="flex items-center gap-2 text-xs sm:text-sm">
+                            <span className="text-gray-600">
+                              x{item.quantity}
+                            </span>
+                            <span className="text-cyan-600 font-medium">
+                              ${(item.price * item.quantity).toFixed(2)}
+                            </span>
+                          </div>
                         </div>
                         {!selectedPackage && (
                           <button
                             type="button"
                             onClick={() => removeItem(index)}
-                            className="text-red-600 hover:text-red-700 transition-colors"
+                            className="text-red-600 hover:text-red-700 transition-colors ml-2 flex-shrink-0"
                           >
-                            <X className="w-5 h-5" />
+                            <X className="w-4 h-4 sm:w-5 sm:h-5" />
                           </button>
                         )}
                       </div>
                     ))}
 
-                    <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-4 space-y-2">
-                      <div className="flex justify-between text-gray-700">
+                    <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-3 sm:p-4 space-y-2">
+                      <div className="flex justify-between text-gray-700 text-sm sm:text-base">
                         <span>Subtotal:</span>
                         <span className="font-semibold">${calculateTotal().subtotal.toFixed(2)}</span>
                       </div>
                       
                       {calculateTotal().discount > 0 && (
-                        <div className="flex justify-between text-green-600 font-semibold">
+                        <div className="flex justify-between text-green-600 font-semibold text-sm sm:text-base">
                           <span>Package Discount ({selectedPackage.discountPercent}%):</span>
                           <span>-${calculateTotal().discount.toFixed(2)}</span>
                         </div>
                       )}
                       
-                      <div className="border-t pt-2 flex justify-between items-center font-bold text-lg">
+                      <div className="border-t pt-2 flex justify-between items-center font-bold text-base sm:text-lg">
                         <span>Total:</span>
-                        <span className="text-cyan-600 text-2xl">
+                        <span className="text-cyan-600 text-xl sm:text-2xl">
                           ${calculateTotal().total.toFixed(2)}
                         </span>
                       </div>
@@ -1142,7 +1146,7 @@ const HomePage = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                   Special Requests (Optional)
                 </label>
                 <textarea
@@ -1151,23 +1155,23 @@ const HomePage = () => {
                   onChange={(e) =>
                     setBookingForm({ ...bookingForm, specialRequests: e.target.value })
                   }
-                  className="input-field"
+                  className="input-field text-sm sm:text-base"
                   placeholder="Any special requirements or dietary restrictions..."
                 />
               </div>
 
-              <div className="flex justify-end space-x-4">
+              <div className="flex flex-col sm:flex-row justify-end gap-3 sm:gap-4">
                 <button
                   type="button"
                   onClick={() => setShowBookingModal(false)}
-                  className="btn-secondary"
+                  className="btn-secondary text-sm sm:text-base py-2 sm:py-2.5 order-2 sm:order-1"
                   disabled={loading}
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="btn-primary bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600"
+                  className="btn-primary bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-sm sm:text-base py-2 sm:py-2.5 order-1 sm:order-2"
                   disabled={loading || selectedItems.length === 0}
                 >
                   {loading ? 'Creating...' : 'Confirm Booking'}
@@ -1180,25 +1184,25 @@ const HomePage = () => {
 
       {/* Add Item Modal */}
       {showItemModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-fade-in">
-          <div className="bg-white rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
-            <div className="sticky top-0 bg-white border-b px-6 py-4 flex justify-between items-center z-10">
-              <h3 className="text-xl font-bold text-gray-900">Add Item to Booking</h3>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4 animate-fade-in overflow-y-auto">
+          <div className="bg-white rounded-xl max-w-3xl w-full my-4 sm:my-8 max-h-[95vh] sm:max-h-[90vh] overflow-y-auto animate-scale-in">
+            <div className="sticky top-0 bg-white border-b px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center z-10">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900">Add Item to Booking</h3>
               <button
                 onClick={() => setShowItemModal(false)}
                 className="text-gray-500 hover:text-gray-700 transition-colors"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
 
-            <div className="p-6">
-              <div className="flex space-x-2 mb-6 overflow-x-auto">
+            <div className="p-4 sm:p-6">
+              <div className="flex space-x-2 mb-4 sm:mb-6 overflow-x-auto scrollbar-hide pb-2">
                 {Object.keys(availableItems).map((type) => (
                   <button
                     key={type}
                     onClick={() => setCurrentItem({ ...currentItem, itemType: type })}
-                    className={`px-4 py-2 rounded-lg font-medium capitalize whitespace-nowrap transition-all ${
+                    className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-medium capitalize whitespace-nowrap transition-all text-xs sm:text-sm ${
                       currentItem.itemType === type
                         ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -1209,30 +1213,30 @@ const HomePage = () => {
                 ))}
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
                 {availableItems[currentItem.itemType].map((item, index) => (
                   <div
                     key={index}
                     onClick={() => handleItemSelect(currentItem.itemType, item)}
-                    className={`p-4 border-2 rounded-lg cursor-pointer transition-all ${
+                    className={`p-3 sm:p-4 border-2 rounded-lg cursor-pointer transition-all ${
                       currentItem.name === item.name
                         ? 'border-cyan-500 bg-cyan-50 shadow-lg'
                         : 'border-gray-200 hover:border-cyan-300 hover:shadow-md'
                     }`}
                   >
-                    <h4 className="font-semibold text-lg mb-1">{item.name}</h4>
-                    <p className="text-gray-600 text-sm mb-2">{item.description}</p>
-                    <p className="text-cyan-600 font-bold">${item.price}</p>
+                    <h4 className="font-semibold text-base sm:text-lg mb-1">{item.name}</h4>
+                    <p className="text-gray-600 text-xs sm:text-sm mb-2">{item.description}</p>
+                    <p className="text-cyan-600 font-bold text-sm sm:text-base">${item.price}</p>
                   </div>
                 ))}
               </div>
 
               {currentItem.name && (
-                <div className="mb-6">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                <div className="mb-4 sm:mb-6">
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
                     Quantity
                   </label>
-                  <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-3 sm:space-x-4">
                     <button
                       type="button"
                       onClick={() =>
@@ -1243,9 +1247,9 @@ const HomePage = () => {
                       }
                       className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
                     >
-                      <Minus className="w-5 h-5" />
+                      <Minus className="w-4 h-4 sm:w-5 sm:h-5" />
                     </button>
-                    <span className="text-xl font-semibold w-12 text-center">
+                    <span className="text-lg sm:text-xl font-semibold w-10 sm:w-12 text-center">
                       {currentItem.quantity}
                     </span>
                     <button
@@ -1258,20 +1262,23 @@ const HomePage = () => {
                       }
                       className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
                     >
-                      <Plus className="w-5 h-5" />
+                      <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
                     </button>
                   </div>
                 </div>
               )}
 
-              <div className="flex justify-end space-x-4">
+              <div className="flex flex-col sm:flex-row justify-end gap-3 sm:gap-4">
                 <button
                   onClick={() => setShowItemModal(false)}
-                  className="btn-secondary"
+                  className="btn-secondary text-sm sm:text-base py-2 sm:py-2.5 order-2 sm:order-1"
                 >
                   Cancel
                 </button>
-                <button onClick={addItemToList} className="btn-primary bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600">
+                <button 
+                  onClick={addItemToList} 
+                  className="btn-primary bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-sm sm:text-base py-2 sm:py-2.5 order-1 sm:order-2"
+                >
                   Add to Booking
                 </button>
               </div>
