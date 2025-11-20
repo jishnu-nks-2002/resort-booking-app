@@ -13,6 +13,22 @@ const Footer = () => {
 
   const currentYear = new Date().getFullYear();
 
+  const AnimatedText = ({ text }) => {
+  return (
+    <div className="flex justify-center gap-1 select-none">
+      {text.split("").map((letter, index) => (
+        <span
+          key={index}
+          className="text-5xl gap-8 tracking-[.8em]  font-bold inline-block transition-all duration-200 cursor-hover animated-letter"
+        >
+          {letter === " " ? "\u00A0" : letter}
+        </span>
+      ))}
+    </div>
+  );
+};
+
+
   return (
     <footer 
       ref={footerRef} 
@@ -181,6 +197,10 @@ const Footer = () => {
               </a>
             </div>
           </div>
+{/* Reactive Text */}
+<div className="mt-10 text-center">
+  <AnimatedText  text="PARADISE RESORT" />
+</div>
 
           {/* Credit */}
           <div className="mt-6 text-center text-sm text-gray-500">

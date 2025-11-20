@@ -519,6 +519,9 @@
   transition: opacity 0.3s ease;
 }
 
+
+
+
 .image-overlay:hover::after {
   opacity: 1;
 }
@@ -701,4 +704,16 @@ textarea:disabled {
 
 .feature-item:hover {
   transform: translateX(5px);
+}
+
+
+.animated-letter {
+  display: inline-block;
+  transition: transform 0.25s ease, color 0.25s ease;
+
+}
+
+.animated-letter:hover {
+  transform: scale(1.6) translateY(-4px);
+  color: rgb(34 211 238); /* cyan-400 */
 }
